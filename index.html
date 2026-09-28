@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кӯлоб Такси 🚕</title>
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f2f2f2;
+  padding:20px;
+}
+.box{
+  max-width:400px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+}
+h2{text-align:center}
+input,select,button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  box-sizing:border-box;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+button{
+  background:#222;
+  color:white;
+  border:0;
+}
+.result{
+  margin-top:20px;
+  font-size:24px;
+  font-weight:bold;
+  text-align:center;
+}
+</style>
+</head>
+
+<body>
+<div class="box">
+<h2>🚕 Кӯлоб Такси</h2>
+
+<label>Масофа (км)</label>
+<input type="number" id="km" min="0" step="0.1" placeholder="Масалан: 5">
+
+<label>Самт</label>
+<select id="zone">
+<option value="city">Дар дохили шаҳр</option>
+<option value="outside">Берун аз шаҳр</option>
+</select>
+
+<button onclick="calculate()">Ҳисоб кардан</button>
+
+<div class="result" id="result">10 сомонӣ</div>
+</div>
+
+<script>
+function calculate(){
+  let km = parseFloat(document.getElementById("km").value) || 0;
+  let zone = document.getElementById("zone").value;
+
+  let price = 10;
+
+  if(km > 3){
+    let extra = km - 3;
+    let rate = zone === "city" ? 3 : 4;
+    price += extra * rate;
+  }
+
+  document.getElementById("result").innerText =
+    price.toFixed(2) + " сомонӣ";
+}
+</script>
+
+</body>
+  </html>
